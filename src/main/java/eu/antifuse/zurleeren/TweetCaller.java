@@ -27,25 +27,21 @@ public class TweetCaller extends TimerTask {
         try {
             String sent = "Gesendet " + ZonedDateTime.now().toString() + ":";
             System.out.println(sent);
-            if (this.tlog) {
-                this.tweeter.t.sendDirectMessage(this.logUser, sent);
-            }
-
+            if (this.tlog) this.tweeter.t.sendDirectMessage(this.logUser, sent);
             this.tweeter.sendTweet();
-        } catch (TwitterException var5) {
-            var5.printStackTrace();
+        } catch (TwitterException e) {
+            e.printStackTrace();
         }
 
         int delay = this.min + this.rd.nextInt(this.max - this.min + 1);
-        this.timer.schedule(new TweetCaller(this.tweeter, this.min, this.max), (long)(delay * 1000 * 60));
-        String var10000 = ZonedDateTime.now().plusMinutes((long)delay).toString();
-        String nae = "Naechster Tweet um " + var10000;
+        this.timer.schedule(new TweetCaller(this.tweeter, this.min, this.max), (delay * 1000 * 60));
+        String nae = "Naechster Tweet um " + ZonedDateTime.now().plusMinutes(delay).toString();;
         System.out.println(nae);
         if (this.tlog) {
             try {
                 this.tweeter.t.sendDirectMessage(this.logUser, nae);
-            } catch (TwitterException var4) {
-                var4.printStackTrace();
+            } catch (TwitterException e) {
+                e.printStackTrace();
             }
         }
 

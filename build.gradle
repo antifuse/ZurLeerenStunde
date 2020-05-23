@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'eu.antifuse'
-mainClassName = 'zurleeren.Main'
+mainClassName = 'eu.antifuse.zurleeren.Main'
 sourceCompatibility = targetCompatibility = 11
 
 repositories {
