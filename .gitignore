@@ -1,0 +1,4 @@
+/build/
+/.gradle/
+/.idea/
+/src/main/java/eu/antifuse/zurleeren/TokenGetter.java
