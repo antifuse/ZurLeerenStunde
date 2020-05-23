@@ -3,6 +3,8 @@ package eu.antifuse.zurleeren;
 import twitter4j.TwitterException;
 
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -25,7 +27,7 @@ public class TweetCaller extends TimerTask {
 
     public void run() {
         try {
-            String sent = "Gesendet " + ZonedDateTime.now().toString() + ":";
+            String sent = "Gesendet " + ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG)) + ":";
             System.out.println(sent);
             if (this.tlog) this.tweeter.t.sendDirectMessage(this.logUser, sent);
             this.tweeter.sendTweet();
@@ -37,7 +39,7 @@ public class TweetCaller extends TimerTask {
         TweetCaller tc = new TweetCaller(this.tweeter, this.min, this.max);
         if (tlog) tc.setLogUser("ntifuse");
         this.timer.schedule(tc, (delay * 1000 * 60));
-        String nae = "Naechster Tweet um " + ZonedDateTime.now().plusMinutes(delay).toString();;
+        String nae = "Naechster Tweet um " + ZonedDateTime.now().plusMinutes(delay).format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG));
         System.out.println(nae);
         if (this.tlog) {
             try {
