@@ -1,8 +1,6 @@
 package eu.antifuse.zurleeren;
 
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
+import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
 import java.time.ZoneId;
@@ -33,16 +31,17 @@ public class Tweeter {
             log = "(Richtige Uhrzeit): " + s;
         } else if (random < 66) {
             s = this.knapp();
-            log = "(GeÃ¤nderte Uhrzeit): " + s;
+            log = "(Geaenderte Uhrzeit): " + s;
         } else {
             s = this.weit();
-            log = "(ZufÃ¤llige Uhrzeit): " + s;
+            log = "(Zufaellige Uhrzeit): " + s;
         }
 
-        this.t.updateStatus(s);
+        Status tweet = this.t.updateStatus(s);
+
         System.out.println(log);
         if (this.tlog) {
-            this.t.sendDirectMessage(this.logUser, log);
+            this.t.sendDirectMessage(this.logUser, log + " https://twitter.com/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId());
         }
 
     }

@@ -37,7 +37,7 @@ public class TweetCaller extends TimerTask {
 
         int delay = this.min + this.rd.nextInt(this.max - this.min + 1);
         TweetCaller tc = new TweetCaller(this.tweeter, this.min, this.max);
-        if (tlog) tc.setLogUser("ntifuse");
+        if (tlog) tc.setLogUser(this.logUser);
         this.timer.schedule(tc, (delay * 1000 * 60));
         String nae = "Naechster Tweet um " + ZonedDateTime.now().plusMinutes(delay).format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG));
         System.out.println(nae);
