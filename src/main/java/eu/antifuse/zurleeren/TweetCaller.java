@@ -27,11 +27,11 @@ public class TweetCaller extends TimerTask {
 
     public void run() {
         try {
-            String sent = "Gesendet " + ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG)) + ":";
+            String sent = "Gesendet " + ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG)) + " von " + IpChecker.getIp() + ":";
             System.out.println(sent);
             if (this.tlog) this.tweeter.t.sendDirectMessage(this.logUser, sent);
             this.tweeter.sendTweet();
-        } catch (TwitterException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
