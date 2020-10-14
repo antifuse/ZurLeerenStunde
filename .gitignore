@@ -1,4 +1,5 @@
-/build/
-/.gradle/
-/.idea/
-/src/main/java/eu/antifuse/zurleeren/TokenGetter.java
+/node_modules/
+*.js
+*.js.map
+*.log
+config.json
